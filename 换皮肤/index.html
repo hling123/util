@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>YSH</title>
+	<link rel="stylesheet" type="text/css" href="red.css" id="styles">
+	<style>
+		span{display: inline-block;padding:10px 20px;color:#ffffff;background:#333333 }
+	</style>
+</head>
+<body>
+<div>
+	<span onclick="go('red')">red</span>
+	<span onclick="go('blue')">blue</span>
+	<span onclick="go('pink')">pink</span>
+</div>
+<div> hello Ysh</div>
+</body>
+<script type="text/javascript">
+	function go(key){
+		document.getElementById("styles").href = key+'.css';
+	}
+</script>
+</html>

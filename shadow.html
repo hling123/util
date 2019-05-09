@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>box-shadow</title>
+	<style type="text/css">
+		.contain{margin:50px auto;}
+		.contain div{float:left;width:100px;height:100px;margin-left:50px;margin-top:50px;background: pink;text-align:center;line-height: 100px;}
+
+
+		.shadow_left{
+			box-shadow:-10px 0 10px -5px blue;
+		}
+		.shadow_bottom{
+			box-shadow: 0 10px 10px -5px blue;
+		}
+		.shadow_right{
+			box-shadow: 10px 0 10px -5px blue;
+		}
+		.shadow_top{
+			box-shadow: 0 -10px 10px -5px blue;
+		}
+		.shadow_left-top{
+			box-shadow: -10px -10px 10px -5px blue;
+		}
+
+		.shadow_right-top{
+			box-shadow: 10px -10px 10px -5px blue;
+		}
+		.shadow_left-bottom{
+			box-shadow: -10px 10px 10px -5px blue;
+		}
+		.shadow_right-bottom{
+			box-shadow: 10px 10px 10px -5px blue;
+		}
+
+		.shadow_no-left{
+			box-shadow: 10px -10px 10px -5px blue,10px 10px 10px -5px blue;
+		}
+		.shadow_no-bottom{
+			box-shadow: -10px -10px 10px -5px blue,10px -10px 10px -5px blue;
+		}
+		.shadow_no-right{
+			box-shadow: -10px -10px 10px -5px blue,-10px 10px 10px -5px blue;
+		}
+		.shadow_no-top{
+			box-shadow: -10px 10px 10px -5px blue,10px 10px 10px -5px blue
+		}
+		.shadow_all{
+			box-shadow: 0 0 15px 4px blue;
+		}
+		.shadow_outall{
+			box-shadow:0 0 20px 5px blue inset;
+		}
+	</style>
+</head>
+<body>
+ <div class="contain">
+ 	<div class="shadow_left">左边阴影</div>
+    <div class="shadow_bottom">底部阴影</div>
+    <div class="shadow_right">右部阴影</div>
+    <div class="shadow_top">顶部部阴影</div>
+    <div class="shadow_left-top">左上阴影</div>
+    <div class="shadow_right-top">右上阴影</div>
+    <div class="shadow_left-bottom">左下阴影</div>
+    <div class="shadow_right-bottom">右下阴影</div>
+    <div class="shadow_no-left">无左阴影</div>
+    <div class="shadow_no-bottom">无下阴影</div>
+    <div class="shadow_no-right">无右阴影</div>
+    <div class="shadow_no-top">无上阴影</div> 
+    <div class="shadow_all">四阴影</div> 
+    <div class="shadow_outall">内四阴影</div> 
+ </div>
+</body>
+</html>
