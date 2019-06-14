@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>aop</title>
+</head>
+<body>
+
+</body>
+<script>
+
+/*function eat(){
+	console.log('I am eating...')
+}*/	
+/*Function.prototype.before = function(fn){
+	fn && fn();
+	this()
+}
+Function.prototype.after = function(fn){
+	this();
+	fn && fn();
+};
+//eat.before(function(){console.log('starting...')})
+//eat.after(function(){console.log('ending...')})
+eat.before(function(){console.log('starting...')})
+eat.after(function(){console.log('ending...')})*/
+
+/*Function.prototype.before = function(fn){
+	var that = this;
+	return function(){
+		fn && fn();
+		that()
+	}
+}
+Function.prototype.after = function(fn){
+	var that = this;
+	return function(){
+		that();
+		fn && fn();
+	}
+}
+eat.before(function(){console.log('starting')}).after(function(){console.log('ending')}).before(function(){console.log('starting2')})()
+*/
+
+/*function eat(){
+	console.log('I am eating...');
+	return {
+		'love':2019
+	}
+}
+Function.prototype.before = function(fn){
+	var that = this;
+	return function(){
+		fn && fn();
+		return that()
+	};
+
+}
+Function.prototype.after = function(fn){
+	var that = this;
+	return function(){
+		var result = that();
+		fn && fn();
+		return result;
+	}
+}
+console.log(eat.before(function(){console.log('starting')}).after(function(){console.log('ending')}).before(function(){console.log('starting2')})())*/
+
+Function.prototype.before = function(fn){
+	var that = this;
+	return function(){
+		fn && fn();
+		that()
+	}
+}
+Function.prototype.after = function(fn){
+	var that = this;
+	return function(){
+		that();
+		fn && fn();
+	}
+}
+function test(){
+	for(var i = 0; i < 10000000000;i++){}
+}
+
+function getRunTime(fn){
+	var start,end;
+	fn.before(function(){
+		start = new Date().getTime()
+	}).after(function(){
+		end = new Date().getTime()
+	})();
+	return end - start;
+}
+console.log(getRunTime(test))
+</script>
+</html>
