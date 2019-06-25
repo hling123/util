@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js</title>
+</head>
+<body>
+</body>
+<script>
+	function isObject(obj){
+		return obj != null && typeof(obj) == 'object';
+	}
+	function isPlainObject(obj){
+		return Object.prototype.toString.call(obj) == '[object Object]';
+	}
+	function observe(data){
+		if(!isObject(data) || !isPlainObject(data)){return;}
+		//return new Observe2(data);
+		return new Observer(data);
+	}
+	var Observer = function(data){
+		this.data = data;
+		this.transform(data);
+	};
+	Observer.prototype.transform = function(data){
+		for(var key in data){
+			this.defineReactive(data,key,data[key]); 
+		}
+	}
+	Observer.prototype.defineReactive = function(data,key,value){
+		var property = Object.getOwnPropertyDescriptor(data,key);
+		if(property && property.configurable === false){
+			return;
+		};
+		var getter = property && property.get;
+		var setter = property && property.set;
+
+		Object.defineProperty(data,key,{
+			enumerable:true,
+			configurable:true,
+			get:function(){
+				//var value = getter?getter.call(data) : value;
+				return value;
+			},
+			set:function (newValue){
+				//var value = setter?setter.call(data) : value;
+				if(newValue === value || (newValue !== newValue && value !== value)){
+					return;
+				}
+				if(setter){
+					setter.call(data,newValue)
+				}else{
+					value = newValue;
+				}
+			}
+		})
+	}
+
+	var Observe2 = function(data){
+		this.data = data;
+		this.transform(data);
+	};
+	Observe2.prototype.transform = function(data){
+		for(var key in data){
+			var value = data[key];
+			Object.defineProperty(data,key,{
+				enumerable:true,             
+				configurable:true,
+				get:function(){
+					console.log('get:'+key);
+					return value;
+				},
+				set:function(newValue){
+					console.log('set:'+key); 
+					//data[key] = newValue; // 会死循环 不断调用set
+					value = newValue;// 全局变量   data.b = 2
+				}
+			});
+			this.transform(value);
+		}
+	}
+	var data = {
+		b:{c:2},
+		d:2
+	};
+	/*observe(data);
+    data.b;
+    data.b.c = 100;
+    console.log(data.b);//2*/
+
+    observe(data);
+   // data.b;
+    //data.b.c = 100;
+    console.log(data.d);
+</script>
+<script>
+	
+	/*var vm = new Vue({
+		el:"#main",
+		data:{
+			message:'hello world'
+		},
+		methods:{
+			clickBtn:function(message){
+				vm.message = 'clicked'
+			}
+		}
+	})*/
+
+</script>
+</html>
