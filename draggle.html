@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		div{
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 30px;
+			position: relative;
+		}
+		div img{
+			width:100%;
+			cursor: move;
+		}
+		div span{
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			border-radius: 50%;
+			display: inline-block;
+			height: 20px;
+			width: 20px;
+			text-align: center;
+			line-height: 16px;
+			background: red;
+			color: yellow;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div  ondragover="over(event)" ondrop="end(event)">
+		<span onclick="del(event)">x</span>
+		<img ondragstart="start(event)"  draggable= true  src="./img/1.jpg"/>
+	</div>
+	<div  ondragover="over(event)" ondrop="end(event)">
+		<span onclick="del(event)">x</span>
+		<img ondragstart="start(event)" draggable= true  src="./img/2.jpg"/>
+	</div>
+	<div  ondragover="over(event)" ondrop="end(event)">
+		<span onclick="del(event)">x</span>
+		<img ondragstart="start(event)" draggable= true  src="./img/3.jpg"/>
+	</div>
+	<div  ondragover="over(event)" ondrop="end(event)">
+		<span onclick="del(event)">x</span>
+		<img ondragstart="start(event)" draggable= true  src="./img/4.jpg"/>
+	</div>
+	<div  ondragover="over(event)" ondrop="end(event)">
+		<span onclick="del(event)">x</span>
+		<img ondragstart="start(event)" draggable= true  src="./img/5.jpg"/>
+	</div>
+</body>
+<script>
+	console.log(getSrc())
+	var prepreTarget = null;
+	function del(event){
+		var target = event.target || event.srcElement;
+		target.parentNode.parentNode.removeChild(target.parentNode)
+		console.log(getSrc())
+	}
+	function start(event){
+		prepreTarget = null;
+		var target = event.target || event.srcElement;
+		var event = event || window.event;
+		prepreTarget = target;
+		//event.dataTransfer.setData('el',JSON.stringify(target));
+	}
+	function over(event){
+		var event = event || window.event;
+		if(event.preventDefault){
+			event.preventDefault()
+		}else{
+			event.returnValue = false;
+		}
+	}
+	function end(event){
+		var target = event.target || event.srcElement;
+		var event = event || window.event;
+		if(event.preventDefault){
+			event.preventDefault()
+		}else{
+			event.returnValue = false;
+		}
+		//var preTarget = JSON.parse(event.dataTransfer.getData('el'));
+		var nextTarget = target;
+		changeSrc(prepreTarget,nextTarget)
+	}
+	function changeSrc(preTarget,nextTarget){
+		var tempsrc1 = preTarget.src;
+		var tempsrc2 = nextTarget.src;
+		preTarget.src = tempsrc2;
+		nextTarget.src = tempsrc1;
+		console.log(getSrc())
+	}
+	function getSrc(){
+		var srcList = document.querySelectorAll('img');
+		var len = srcList.length;
+		var resultSrc = [];
+		for(var i = 0; i < len; i++){
+			resultSrc.push(srcList[i].src)
+		}
+		return resultSrc;
+	}
+</script>
+</html>
