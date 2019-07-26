@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title></title>
 	<style>
 		div{
@@ -33,23 +34,23 @@
 <body>
 	<div  ondragover="over(event)" ondrop="end(event)">
 		<span onclick="del(event)">x</span>
-		<img ondragstart="start(event)"  draggable= true  src="./img/1.jpg"/>
+		<img  ondragstart="starta(event)"  draggable= "true"  src="./img/1.jpg"/>
 	</div>
 	<div  ondragover="over(event)" ondrop="end(event)">
 		<span onclick="del(event)">x</span>
-		<img ondragstart="start(event)" draggable= true  src="./img/2.jpg"/>
+		<img ondragstart="starta(event)" draggable= "true"  src="./img/2.jpg"/>
 	</div>
 	<div  ondragover="over(event)" ondrop="end(event)">
 		<span onclick="del(event)">x</span>
-		<img ondragstart="start(event)" draggable= true  src="./img/3.jpg"/>
+		<img ondragstart="starta(event)" draggable= "true"  src="./img/3.jpg"/>
 	</div>
 	<div  ondragover="over(event)" ondrop="end(event)">
 		<span onclick="del(event)">x</span>
-		<img ondragstart="start(event)" draggable= true  src="./img/4.jpg"/>
+		<img ondragstart="starta(event)" draggable= "true"  src="./img/4.jpg"/>
 	</div>
 	<div  ondragover="over(event)" ondrop="end(event)">
 		<span onclick="del(event)">x</span>
-		<img ondragstart="start(event)" draggable= true  src="./img/5.jpg"/>
+		<img ondragstart="starta(event)" draggable= "true"  src="./img/5.jpg"/>
 	</div>
 </body>
 <script>
@@ -60,7 +61,7 @@
 		target.parentNode.parentNode.removeChild(target.parentNode)
 		console.log(getSrc())
 	}
-	function start(event){
+	function starta(event){
 		prepreTarget = null;
 		var target = event.target || event.srcElement;
 		var event = event || window.event;
